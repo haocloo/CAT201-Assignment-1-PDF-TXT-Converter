@@ -1,7 +1,7 @@
 ## ASSIGNMENT I : Integrated Software Development Workshop 2023/2024
 
 <br><br>
-| Group 01 Members                                                     | Matric No | Role        |
+| Group 69 Members                                                     | Matric No | Role        |
 | :-:                                                                  | :-:       | :-:         | 
 | Yeo Din Song       [@Yeo8023](https://github.com/Yeo8023)            | 163369    | Leader      |
 | Loo Chi Hao          [@haocloo](https://github.com/haocloo)          | 163703    | Member      |
