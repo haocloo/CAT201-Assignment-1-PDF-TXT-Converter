@@ -1,4 +1,64 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: aquamarine;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    width: 80%;
+    max-width: 800px;
+}
+
+.header, .footer {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.hero {
+    background-color: #2980b9;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.content {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.btn-large {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-large:hover {
+    background-color: #2980b9;
 }

@@ -8,23 +8,42 @@
 
 <body>
 
+  <div class="header">Welcome to PDF and TXT Converter</div>
+
   <div class="container">
-    <div class="title center">PDF to TEXT Converter</div>
-    <div class="content center">Convert your PDF to TEXT without having to install software.</div>
+    <div class="hero">
+      <div class="title">PDF and TXT Converter</div>
+      <div class="content">Convert your PDF to TXT and TXT to PDF without having to install software.</div>
+    </div>
 
-    <!-- Form for file upload -->
-    <form action="../php/index.php" method="POST" enctype="multipart/form-data">
-      <div class="center col s12 m6 l2">
-        <span class="btn-large btn-file">
-          <i class="material-icons left">file_upload</i>
-          Select PDF File <input type="file" name="user-file" id="user-file" accept=".pdf">
-        </span>
+    <!-- Form for PDF file upload -->
+    <form action="../php/convert_pdf_to_txt.php" method="POST" enctype="multipart/form-data">
+      <div class="btn-large">
+        <i class="material-icons left">file_upload</i>
+        Select PDF File to Convert to TXT <input type="file" name="user-file" id="user-file" accept=".pdf">
       </div>
-
-      <div class="center col s12 m6 l2">
+      <div class="btn-large">
         <input type="submit" value="Submit">
       </div>
     </form>
+
+    <!-- Form for TXT file upload -->
+    <form action="../php/convert_txt_to_pdf.php" method="POST" enctype="multipart/form-data">
+      <div class="btn-large">
+        <i class="material-icons left">file_upload</i>
+        Select TXT File to Convert to PDF <input type="file" name="user-file" id="user-file" accept=".txt">
+      </div>
+      <div class="btn-large">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+
+    <!-- Link to download CSV file -->
+    <a class="btn-large" href="../csv/sample.csv" download>Download CSV file</a>
+
+  </div>
+
+  <div class="footer">© 2023 PDF and TXT Converter. All rights reserved.</div>
 
 </body>
 

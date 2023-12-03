@@ -39,10 +39,13 @@ docker-compose up -d
 javac -cp ".;java/lib/*" java/*.java
 ```
 
-### Create your branch (naming example : lch/module-name)
+## Git commands
+
+### Create your branch (naming example : lch)
 ```bash
 git switch dev
-git switch -c <your-branch-name>
+git switch -c your-branch-name
+(eg : git switch -c lch)
 ```
 
 ### Commit your changes
@@ -54,7 +57,7 @@ git commit -m "your commit message"
 ### Merge dev branch to your branch and update your branch
 ```bash
 git pull origin dev
-git push origin <your-branch-name>
+git push origin your-branch-name
 ```
 
 ### Merge any merge conflicts (if any)
@@ -65,6 +68,6 @@ git commit -m "Resolve merge conflict"
 ### Merge your branch to dev branch and update dev branch
 ```bash
 git switch dev
-git merge <your-branch-name>
+git merge your-branch-name
 git push origin dev
 ```
