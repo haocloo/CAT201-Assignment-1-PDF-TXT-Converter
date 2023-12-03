@@ -18,6 +18,11 @@ git clone https://github.com/haocloo/CAT201-Assignment-1.git
 cd CAT201-Assignment-1
 ```
 
+### Run tailwindcss
+```bash
+npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+```
+
 ### Start docker container
 (Make sure you are at the root directory)
 ```bash
