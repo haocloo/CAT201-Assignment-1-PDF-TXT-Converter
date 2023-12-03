@@ -10,13 +10,10 @@ RUN apt-get update && apt-get install -y \
 COPY java/ /java/
 
 # Compile the Java file
-RUN javac -cp /java/lib/pdfbox-app-3.0.1.jar /java/ConvertPDF.java
+RUN javac -cp /java/lib/pdfbox-app-2.0.24.jar /java/PDFTextConverter.java
 
 # Make port 80 available to the world outside this container
 EXPOSE 80
-
-# Run the Java program when the container starts
-# CMD ["java", "-cp", "/java:/java/lib/pdfbox-app-3.0.1.jar", "ConvertPDF"]
 
 # Run Apache in the foreground when the container starts
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

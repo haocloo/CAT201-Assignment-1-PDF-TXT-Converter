@@ -1,5 +1,6 @@
 # Ignore all class files in every directory
 *.class
 
+# all files in input folder except csv
 input/
 output/
