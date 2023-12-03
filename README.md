@@ -68,7 +68,6 @@ git switch dev
 git merge <your-branch-name>
 git push origin dev
 ```
-
 ### View Github.com (Only for CAT201-Assignment-1)
 ```bash
 git remote -v
