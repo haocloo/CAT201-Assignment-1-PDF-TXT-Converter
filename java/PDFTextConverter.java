@@ -83,11 +83,29 @@ public class PDFTextConverter {
 
         // Add each line from the text file to the PDF document
         while ((line = reader.readLine()) != null) {
+            // Check if we have reached the end of the page
+            if (yPosition < margin) {
+                // Close the current content stream
+                contentStream.close();
+
+                // Create a new page and content stream
+                page = new PDPage();
+                document.addPage(page);
+                contentStream = new PDPageContentStream(document, page);
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+
+                // Reset the yPosition to the top of the page
+                yPosition = yStart;
+            }
+
+            // Add the text to the content stream
             contentStream.beginText();
             contentStream.newLineAtOffset(margin, yPosition);
             contentStream.showText(line);
             contentStream.endText();
-            yPosition -= 15; // move to next line
+
+            // Move to the next line
+            yPosition -= 15;
         }
 
         // Close the content stream
@@ -100,4 +118,5 @@ public class PDFTextConverter {
         reader.close();
         document.close();
     }
+
 }
