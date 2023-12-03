@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+$_SESSION['message'] = 'File is uploading...';
+
 if (isset($_FILES['user-file'])) {
     //Array to display different errors
     $phpFileUploadErrors = array(
@@ -37,9 +41,13 @@ if (isset($_FILES['user-file'])) {
         file_put_contents("/var/www/html/output/compile_log.txt", shell_exec("cd /var/www/html/java && javac -cp .:lib/* PDFTextConverter.java 2>&1"));
         $output = shell_exec("cd /var/www/html/java && java -cp .:lib/* PDFTextConverter \"/var/www/html/input/" . $_FILES['user-file']['name'] . "\" 2>&1");
         file_put_contents("/var/www/html/output/run_log.txt", $output);
+
+        // Set success message with a link to download the converted text file
+        $filenameWithoutExtension = pathinfo($_FILES['user-file']['name'], PATHINFO_FILENAME);
+        $_SESSION['pdf-message'] = 'File has been uploaded and converted successfully. <a href="/output/' . $filenameWithoutExtension . '.txt" download>Download the converted file</a>';
     }
 }
 
-// Redirect back to index.html
-header('Location: ../html/index.html');
+// Redirect back to index.php
+header('Location: ../html/index.php');
 exit;

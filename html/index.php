@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +29,14 @@
         <input type="submit" value="Submit">
       </div>
     </form>
+    <div id="pdf-message">
+      <?php
+      if (isset($_SESSION['pdf-message'])) {
+        echo $_SESSION['pdf-message'];
+        unset($_SESSION['pdf-message']);
+      }
+      ?>
+    </div>
 
     <!-- Form for TXT file upload -->
     <form action="../php/convert_txt_to_pdf.php" method="POST" enctype="multipart/form-data">
@@ -37,6 +48,14 @@
         <input type="submit" value="Submit">
       </div>
     </form>
+    <div id="txt-message">
+      <?php
+      if (isset($_SESSION['txt-message'])) {
+        echo $_SESSION['txt-message'];
+        unset($_SESSION['txt-message']);
+      }
+      ?>
+    </div>
 
     <!-- Link to download CSV file -->
     <a class="btn-large" href="../csv/sample.csv" download>Download CSV file</a>
