@@ -35,7 +35,8 @@ if (isset($_FILES['user-file'])) {
 
         // Execute the java program
         file_put_contents("/var/www/html/output/compile_log.txt", shell_exec("cd /var/www/html/java && javac -cp .:lib/* ConvertPDF.java 2>&1"));
-        file_put_contents("/var/www/html/output/run_log.txt", shell_exec("cd /var/www/html/java && java -cp .:lib/* ConvertPDF 2>&1"));
+        $output = shell_exec("cd /var/www/html/java && java -cp .:lib/* ConvertPDF \"/var/www/html/input/" . $_FILES['user-file']['name'] . "\" 2>&1");
+        file_put_contents("/var/www/html/output/run_log.txt", $output);
     }
 }
 
