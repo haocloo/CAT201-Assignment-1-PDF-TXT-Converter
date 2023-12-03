@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 COPY java/ /java/
 
 # Compile the Java file
-RUN javac -cp /java/lib/pdfbox-app-2.0.24.jar /java/ConvertPDF.java
+RUN javac -cp /java/lib/pdfbox-app-2.0.24.jar /java/PDFTextConverter.java
 
 # Make port 80 available to the world outside this container
 EXPOSE 80

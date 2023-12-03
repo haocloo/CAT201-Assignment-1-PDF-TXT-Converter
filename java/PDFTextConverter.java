@@ -9,7 +9,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
-public class ConvertPDF {
+public class PDFTextConverter {
     public static void main(String[] args) {
         try {
             // The filename is passed as a command-line argument
