@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Welcome to my web application!</title>
+  <link rel="stylesheet" type="text/css" href="../css/index.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="title center">PDF to TEXT Converter</div>
+    <div class="content center">Convert your PDF to TEXT without having to install software.</div>
+
+    <!-- Form for file upload -->
+    <form action="../php/index.php" method="POST" enctype="multipart/form-data">
+      <div class="center col s12 m6 l2">
+        <span class="btn-large btn-file">
+          <i class="material-icons left">file_upload</i>
+          Select PDF File <input type="file" name="user-file" id="user-file" accept=".pdf">
+        </span>
+      </div>
+
+      <div class="center col s12 m6 l2">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+
+</body>
+
+</html>
