@@ -18,9 +18,9 @@ git clone https://github.com/haocloo/CAT201-Assignment-1.git
 cd CAT201-Assignment-1
 ```
 
-### Run tailwindcss
+### Run tailwindcss (In Terminal 1)
 ```bash
-npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+npx tailwindcss -i ./css/input.css -o ./css/output.css --watch
 ```
 
 ### Start docker container
@@ -29,7 +29,7 @@ npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
 docker-compose build
 docker-compose up -d
 ```
-View website at http://localhost:8082/html/index.html
+View website at http://localhost:8082/html/index.php
 
 ### Restart docker container
 (Make sure you are at the root directory)
