@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$_SESSION['message'] = 'File is uploading...';
+$_SESSION['message'] = 'Files are uploading...';
 
 if (isset($_FILES['user-file'])) {
     //Array to display different errors
@@ -29,24 +29,27 @@ if (isset($_FILES['user-file'])) {
             mkdir('/var/www/html/input', 0777, true);
         }
 
-        // Move the uploaded file to the input directory
-        move_uploaded_file($_FILES['user-file']['tmp_name'], '/var/www/html/input/' . $_FILES['user-file']['name']);
-
         // Create the output directory if it does not exist
         if (!file_exists('/var/www/html/output')) {
             mkdir('/var/www/html/output', 0777, true);
         }
 
-        // Execute the java program
-        file_put_contents("/var/www/html/output/compile_log.txt", shell_exec("cd /var/www/html/java && javac -cp .:lib/* PDFTextConverter.java 2>&1"));
-        file_put_contents("/var/www/html/output/run_log.txt", shell_exec("cd /var/www/html/java && java -cp .:lib/* PDFTextConverter \"/var/www/html/input/" . $_FILES['user-file']['name'] . "\" 2>&1"));
+        // Loop over each uploaded file
+        for ($i = 0; $i < count($_FILES['user-file']['name']); $i++) {
+            // Move the uploaded file to the input directory
+            move_uploaded_file($_FILES['user-file']['tmp_name'][$i], '/var/www/html/input/' . $_FILES['user-file']['name'][$i]);
 
-        // Set success message with a link to download the converted text file
-        $filenameWithoutExtension = pathinfo($_FILES['user-file']['name'], PATHINFO_FILENAME);
-        $_SESSION['pdf-message'] = '
-        <button class="bg-green-500 hover:bg-green-700 text-white font-bold h-10 px-4 rounded">
-          <a href="/output/' . $filenameWithoutExtension . '.pdf" download>Download</a>
-        </button>';
+            // Execute the java program
+            file_put_contents("/var/www/html/output/compile_log.txt", shell_exec("cd /var/www/html/java && javac -cp .:lib/* PDFTextConverter.java 2>&1"));
+            file_put_contents("/var/www/html/output/run_log.txt", shell_exec("cd /var/www/html/java && java -cp .:lib/* PDFTextConverter \"/var/www/html/input/" . $_FILES['user-file']['name'][$i] . "\" 2>&1"));
+
+            // Set success message with a link to download the converted text file
+            $filenameWithoutExtension = pathinfo($_FILES['user-file']['name'][$i], PATHINFO_FILENAME);
+            $_SESSION['pdf-message'] .= '
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold h-10 px-4 rounded">
+              <a href="/output/' . $filenameWithoutExtension . '.pdf" download>Download ' . $filenameWithoutExtension . '.pdf</a>
+            </button>';
+        }
     }
 }
 

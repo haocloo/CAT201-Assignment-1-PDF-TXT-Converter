@@ -12,11 +12,15 @@ session_start();
   <style>
     body {
       background-image: url('../images/Fall Tree.jpg');
-      background-size: cover; /* or 'contain' depending on your preference */
+      background-size: cover;
+      /* or 'contain' depending on your preference */
       background-repeat: no-repeat;
-      background-attachment: fixed; /* Fixed background */
-      margin: 0; /* Remove default margin */
-      padding: 0; /* Remove default padding */
+      background-attachment: fixed;
+      /* Fixed background */
+      margin: 0;
+      /* Remove default margin */
+      padding: 0;
+      /* Remove default padding */
     }
   </style>
 </head>
@@ -36,44 +40,44 @@ session_start();
 
     <div class="container mx-auto p-8 bg-yellow-100 border-orange-500 border rounded">
 
-    <!-- Form for PDF file upload -->
-    <form action="../php/convert_pdf_to_txt.php" method="POST" enctype="multipart/form-data" class="mt-4">
-      <label for="pdf-file" class="text-lg font-semibold">Select PDF File to Convert to TXT</label>
-      <input type="file" name="user-file" id="pdf-file" accept=".pdf" class="mt-2 p-2 border rounded" required>
-      <div class="flex flex-row gap-5 mt-4">
-        <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold h-10 px-4 rounded">
-        <div id="txt-message">
-          <?php
-          if (isset($_SESSION['txt-message'])) {
-            echo $_SESSION['txt-message'];
-            unset($_SESSION['txt-message']);
-          }
-          ?>
+      <!-- Form for PDF file upload -->
+      <form action="../php/convert_pdf_to_txt.php" method="POST" enctype="multipart/form-data" class="mt-4">
+        <label for="pdf-file" class="text-lg font-semibold">Select PDF File to Convert to TXT</label>
+        <input type="file" name="user-file[]" id="pdf-file" accept=".pdf" class="mt-2 p-2 border rounded" multiple required>
+        <div class="flex flex-row gap-5 mt-4">
+          <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold h-10 px-4 rounded">
+          <div id="txt-message">
+            <?php
+            if (isset($_SESSION['txt-message'])) {
+              echo $_SESSION['txt-message'];
+              unset($_SESSION['txt-message']);
+            }
+            ?>
+          </div>
         </div>
-      </div>
-    </form>
-    
-    <!-- Form for TXT file upload -->
-    <form action="../php/convert_txt_to_pdf.php" method="POST" enctype="multipart/form-data" class="mt-8">
-      <label for="txt-file" class="text-lg font-semibold">Select TXT File to Convert to PDF</label>
-      <input type="file" name="user-file" id="txt-file" accept=".txt" class="mt-2 p-2 border rounded" required>
-      <div class="flex flex-row gap-5 mt-4">
-        <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold h-10 px-4 rounded">
-        <div id="pdf-message">
-          <?php
-          if (isset($_SESSION['pdf-message'])) {
-            echo $_SESSION['pdf-message'];
-            unset($_SESSION['pdf-message']);
-          }
-          ?>
-        </div>
-      </div>
-    </form>
+      </form>
 
-    <!-- Button to download CSV file -->
-    <a href="../csv/sample.csv" download class="download-btn mt-8 inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      Download Sample CSV
-    </a>
+      <!-- Form for TXT file upload -->
+      <form action="../php/convert_txt_to_pdf.php" method="POST" enctype="multipart/form-data" class="mt-8">
+        <label for="txt-file" class="text-lg font-semibold">Select TXT File to Convert to PDF</label>
+        <input type="file" name="user-file[]" id="txt-file" accept=".txt" class="mt-2 p-2 border rounded" multiple required>
+        <div class="flex flex-row gap-5 mt-4">
+          <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold h-10 px-4 rounded">
+          <div id="pdf-message">
+            <?php
+            if (isset($_SESSION['pdf-message'])) {
+              echo $_SESSION['pdf-message'];
+              unset($_SESSION['pdf-message']);
+            }
+            ?>
+          </div>
+        </div>
+      </form>
+
+      <!-- Button to download CSV file -->
+      <a href="../csv/sample.csv" download class="download-btn mt-8 inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Download Sample CSV
+      </a>
     </div>
   </div>
 
