@@ -62,6 +62,30 @@ session_start();
     </a>
   </div>
 
+  <div class="container mx-auto p-8">
+    <!-- Instructions for PDF to TXT conversion -->
+    <div class="mt-8 float-left w-1/2 border rounded p-4 bg-gray-100">
+      <div class="text-2xl font-bold mb-2 text-blue-500">How to Convert PDF to TXT:</div>
+      <ol class="list-decimal pl-6">
+        <li>Choose the PDF file from your laptop.</li>
+        <li>Click the <span class="font-semibold">Submit</span> button.</li>
+        <li>Wait patiently while the system converts the file to TXT.</li>
+        <li>Once the conversion is complete, press the <span class="font-semibold">Download</span> button to get the TXT file.</li>
+      </ol>
+    </div>
+
+    <!-- Instructions for TXT to PDF conversion -->
+    <div class="mt-8 float-right w-1/2 border rounded p-4 bg-gray-100">
+      <div class="text-2xl font-bold mb-2 text-blue-500">How to Convert TXT to PDF:</div>
+      <ol class="list-decimal pl-6">
+        <li>Choose the TXT file from your laptop.</li>
+        <li>Click the <span class="font-semibold">Submit</span> button.</li>
+        <li>Wait patiently while the system converts the file to PDF.</li>
+        <li>Once the conversion is complete, press the <span class="font-semibold">Download</span> button to get the PDF file.</li>
+      </ol>
+    </div>
+  </div>
+
   <div class="text-center text-gray-600 mt-8">© 2023 PDF and TXT Converter. All rights reserved.</div>
 
 </body>
