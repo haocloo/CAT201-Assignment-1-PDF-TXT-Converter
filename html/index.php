@@ -9,6 +9,16 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PDF and TXT Converter</title>
   <link rel="stylesheet" type="text/css" href="../css/output.css">
+  <style>
+    body {
+      background-image: url('../images/Fall Tree.jpg');
+      background-size: cover; /* or 'contain' depending on your preference */
+      background-repeat: no-repeat;
+      background-attachment: fixed; /* Fixed background */
+      margin: 0; /* Remove default margin */
+      padding: 0; /* Remove default padding */
+    }
+  </style>
 </head>
 
 <body class="bg-gray-100 font-sans">
@@ -21,6 +31,10 @@ session_start();
       <div class="text-3xl font-bold mb-4">PDF and TXT Converter</div>
       <div class="text-gray-700">Easily convert PDF to TXT and TXT to PDF without installing any software.</div>
     </div>
+
+    <div class="mt-4"></div>
+
+    <div class="container mx-auto p-8 bg-yellow-100 border-orange-500 border rounded">
 
     <!-- Form for PDF file upload -->
     <form action="../php/convert_pdf_to_txt.php" method="POST" enctype="multipart/form-data" class="mt-4">
@@ -60,6 +74,7 @@ session_start();
     <a href="../csv/sample.csv" download class="download-btn mt-8 inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
       Download Sample CSV
     </a>
+    </div>
   </div>
 
   <div class="container mx-auto p-8">
@@ -68,9 +83,9 @@ session_start();
       <div class="text-2xl font-bold mb-2 text-blue-500">How to Convert PDF to TXT:</div>
       <ol class="list-decimal pl-6">
         <li>Choose the PDF file from your laptop.</li>
-        <li>Click the <span class="font-semibold">Submit</span> button.</li>
+        <li>Click the <span class="font-semibold text-blue-700 !important">Submit</span> button.</li>
         <li>Wait patiently while the system converts the file to TXT.</li>
-        <li>Once the conversion is complete, press the <span class="font-semibold">Download</span> button to get the TXT file.</li>
+        <li>Once the conversion is complete, press the <span class="font-semibold text-blue-700 !important">Download</span> button to get the TXT file.</li>
       </ol>
     </div>
 
@@ -79,9 +94,9 @@ session_start();
       <div class="text-2xl font-bold mb-2 text-blue-500">How to Convert TXT to PDF:</div>
       <ol class="list-decimal pl-6">
         <li>Choose the TXT file from your laptop.</li>
-        <li>Click the <span class="font-semibold">Submit</span> button.</li>
+        <li>Click the <span class="font-semibold text-blue-700 !important">Submit</span> button.</li>
         <li>Wait patiently while the system converts the file to PDF.</li>
-        <li>Once the conversion is complete, press the <span class="font-semibold">Download</span> button to get the PDF file.</li>
+        <li>Once the conversion is complete, press the <span class="font-semibold text-blue-700 !important">Download</span> button to get the PDF file.</li>
       </ol>
     </div>
   </div>
