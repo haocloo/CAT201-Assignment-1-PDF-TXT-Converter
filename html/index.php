@@ -19,20 +19,25 @@ session_start();
       /* Fixed background */
       margin: 0;
       /* Remove default margin */
+      margin-top: 50px; 
+      /* Adjust the value based on the height of your fixed header */
       padding: 0;
       /* Remove default padding */
+    }
+    .font-header {
+      font-family: 'Cambria', sans-serif; 
+      font-style: italic;
     }
   </style>
 </head>
 
 <body class="bg-gray-100 font-sans">
-<div class="fixed top-0 w-full text-center p-4 bg-gradient-to-r from-blue-500 to-green-500 text-white text-2xl font-serif">
-  <h1>PDF and TXT Converter</h1>
+<div class="fixed top-0 w-full text-center p-4 text-white text-2xl font-header" style="background-image: url('../images/Header.jpg');">
+  <h1 style="font-size: 40px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); letter-spacing: 2px; text-transform: uppercase;"> PDF TO TXT CONVERTER</h1>
 </div>
+
   <div class="container mx-auto p-8">
     
-
-
     <div class="bg-white p-8 rounded shadow-lg">
       <div class="text-3xl font-bold mb-4">PDF and TXT Converter</div>
       <div class="text-gray-700">Easily convert PDF to TXT and TXT to PDF without installing any software.</div>
@@ -110,12 +115,6 @@ session_start();
   <div class="text-black">Prepared by: Yeo Din Song, Loo Chi Hao, Lim Yong Jun, Lim Jia Liang</div>
   <div class="text-black">© 2023 PDF and TXT Converter. All rights reserved.</div>
 </div>
-
-
-
-
-
-
 
 </body>
 
