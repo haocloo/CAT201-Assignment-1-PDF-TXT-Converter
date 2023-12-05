@@ -46,7 +46,7 @@ if (isset($_FILES['user-file'])) {
             // Set success message with a link to download the converted text file
             $filenameWithoutExtension = pathinfo($_FILES['user-file']['name'][$i], PATHINFO_FILENAME);
             $_SESSION['pdf-message'] .= '
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold h-10 px-4 rounded">
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold h-10 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
               <a href="/output/' . $filenameWithoutExtension . '.pdf" download>Download ' . $filenameWithoutExtension . '.pdf</a>
             </button>';
         }

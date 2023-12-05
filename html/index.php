@@ -143,7 +143,7 @@ session_start();
         <label for="pdf-file" class="text-lg font-semibold verdana-font">Select PDF File to Convert to TXT File</label>
         <input type="file" name="user-file[]" id="pdf-file" accept=".pdf" class="mt-2 p-2 border rounded" multiple required>
         <div class="flex flex-row gap-5 mt-4">
-          <input type="submit" value="Submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded">
+          <input type="submit" value="Submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
           <div id="txt-message">
             <?php
             if (isset($_SESSION['txt-message'])) {
@@ -160,7 +160,7 @@ session_start();
         <label for="txt-file" class="text-lg font-semibold verdana-font">Select TXT File to Convert to PDF File</label>
         <input type="file" name="user-file[]" id="txt-file" accept=".txt" class="mt-2 p-2 border rounded" multiple required>
         <div class="flex flex-row gap-5 mt-4">
-          <input type="submit" value="Submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded">
+          <input type="submit" value="Submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
           <div id="pdf-message">
             <?php
             if (isset($_SESSION['pdf-message'])) {
@@ -173,7 +173,7 @@ session_start();
       </form>
 
       <!-- Button to download CSV file -->
-      <a href="../csv/sample.csv" download class="download-btn mt-8 inline-flex items-center bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+      <a href="../csv/sample.csv" download class="download-btn mt-8 inline-flex items-center bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
         Download Sample CSV
       </a>
     </div>
