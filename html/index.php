@@ -28,12 +28,93 @@ session_start();
       font-family: 'Cambria', sans-serif; 
       font-style: italic;
     }
+
+    /* Keyframe animation for falling leaves with fade-in and rotation (right-hand side leaves) */
+    @keyframes fallingLeavesRight {
+      0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg);
+        opacity: 0; 
+        /* Start with opacity 0 */
+      }
+      20% {
+        opacity: 0.7; 
+        /* Gradually increase opacity within the first second */
+      }
+      100% {
+        transform: translateY(110vh) translateX(10vw) rotate(360deg);
+        opacity: 0.9; 
+        /* Maintain opacity at 0.9 after the initial fade-in */
+      }
+    }
+
+    /* Keyframe animation for falling leaves with fade-in and rotation (left-hand side leaves) */
+    @keyframes fallingLeavesLeft {
+      0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg);
+        opacity: 0; 
+        /* Start with opacity 0 */
+      }
+      10% {
+        opacity: 0.7; 
+        /* Gradually increase opacity within the first second */
+      }
+      100% {
+        transform: translateY(110vh) translateX(-10vw) rotate(360deg);
+        opacity: 0.9; 
+        /* Maintain opacity at 0.9 after the initial fade-in */
+      }
+    }
+
+    /* Style for the falling leaves */
+    .falling-leaf {
+      position: fixed;
+      pointer-events: none; 
+      /* Do not capture pointer events */
+      z-index: -1; 
+      /* Set a lower z-index to place leaves behind other elements */
+    }
+
+    /* Apply different styles to each leaf */
+    .leaf1 {
+      animation: fallingLeavesRight linear infinite;
+      animation-duration: 8s;
+    }
+    .leaf2 {
+      animation: fallingLeavesRight linear infinite;
+      animation-duration: 10s;
+    }
+    .leaf3 {
+      animation: fallingLeavesRight linear infinite;
+      animation-duration: 12s;
+    }
+    .leaf4 {
+      animation: fallingLeavesRight linear infinite;
+      animation-duration: 9s;
+    }
+
+    /* Apply different styles to each bottom leaf */
+    .leaf5 {
+      animation: fallingLeavesLeft linear infinite;
+      animation-duration: 8s;
+    }
+    .leaf6 {
+      animation: fallingLeavesLeft linear infinite;
+      animation-duration: 10s;
+    }
+    .leaf7 {
+      animation: fallingLeavesLeft linear infinite;
+      animation-duration: 12s;
+    }
+    .leaf8 {
+      animation: fallingLeavesLeft linear infinite;
+      animation-duration: 9s;
+    }
   </style>
 </head>
 
 <body class="bg-gray-100 font-sans">
 <div class="fixed top-0 w-full text-center p-4 text-white text-2xl font-header" style="background-image: url('../images/Header.jpg');">
-  <h1 style="font-size: 40px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); letter-spacing: 2px; text-transform: uppercase;"> PDF TO TXT CONVERTER</h1>
+  <h1 style="font-size: 40px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); letter-spacing: 2px; text-transform: uppercase;"> PDF & TXT CONVERTER</h1>
 </div>
 
   <div class="container mx-auto p-8">
@@ -114,6 +195,32 @@ session_start();
   <div class="text-center bg-white bg-opacity-50 w-full h-auto mt-8 rounded">
   <div class="text-black">Prepared by: Yeo Din Song, Loo Chi Hao, Lim Yong Jun, Lim Jia Liang</div>
   <div class="text-black">© 2023 PDF and TXT Converter. All rights reserved.</div>
+</div>
+
+<!-- Falling leaves animation -->
+<div class="falling-leaf leaf1" style="left: 92.5%; top: 5%;">
+  <img src="../images/leaves1.png" alt="Leaf 1">
+</div>
+<div class="falling-leaf leaf2" style="left: 87.5%; top: 10%;">
+  <img src="../images/leaves2.png" alt="Leaf 2">
+</div>
+<div class="falling-leaf leaf3" style="left: 75%; top: 5%;">
+  <img src="../images/leaves3.png" alt="Leaf 3">
+</div>
+<div class="falling-leaf leaf4" style="left: 62.5%; top: 15%;">
+  <img src="../images/leaves4.png" alt="Leaf 4">
+</div>
+<div class="falling-leaf leaf5" style="left: 50%; top: 15%;">
+  <img src="../images/leaves1.png" alt="Leaf 1">
+</div>
+<div class="falling-leaf leaf6" style="left: 37.5%; top: 2%;">
+  <img src="../images/leaves2.png" alt="Leaf 2">
+</div>
+<div class="falling-leaf leaf7" style="left: 20%; top: 10%;">
+  <img src="../images/leaves3.png" alt="Leaf 3">
+</div>
+<div class="falling-leaf leaf8" style="left: 2%; top: 5%;">
+  <img src="../images/leaves4.png" alt="Leaf 4">
 </div>
 
 </body>
