@@ -11,6 +11,8 @@ session_start();
   <link rel="stylesheet" type="text/css" href="../css/output.css">
 </head>
 
+<link rel="stylesheet" type="text/css" href="../css/input.css">
+
 <body class="bg-gray-100 font-sans">
   <div class="fixed top-0 w-full text-center p-4 text-white text-2xl font-header" style="background-image: url('../images/Header.jpg'); box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);">
     <h1 style="font-size: 40px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); letter-spacing: 2px; text-transform: uppercase;"> PDF & TXT CONVERTER</h1>
