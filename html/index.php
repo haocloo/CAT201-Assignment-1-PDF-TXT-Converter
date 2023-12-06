@@ -19,22 +19,26 @@ session_start();
       /* Fixed background */
       margin: 0;
       /* Remove default margin */
-      margin-top: 50px; 
+      margin-top: 50px;
       /* Adjust the value based on the height of your fixed header */
       padding: 0;
       /* Remove default padding */
     }
+
     .font-header {
-      font-family: 'Cambria', sans-serif; 
+      font-family: 'Cambria', sans-serif;
       font-style: italic;
     }
+
     .arial-black-font {
       font-family: Arial Black, sans-serif;
     }
-    .verdana-font{
+
+    .verdana-font {
       font-family: Verdana, sans-serif;
     }
-    .times-font{
+
+    .times-font {
       font-family: 'Times New Roman', Times, serif;
       font-size: 1.1em;
     }
@@ -43,16 +47,18 @@ session_start();
     @keyframes fallingLeavesRight {
       0% {
         transform: translateY(-10vh) translateX(0) rotate(0deg);
-        opacity: 0; 
+        opacity: 0;
         /* Start with opacity 0 */
       }
+
       20% {
-        opacity: 0.7; 
+        opacity: 0.7;
         /* Gradually increase opacity within the first second */
       }
+
       100% {
         transform: translateY(110vh) translateX(10vw) rotate(360deg);
-        opacity: 0.9; 
+        opacity: 0.9;
         /* Maintain opacity at 0.9 after the initial fade-in */
       }
     }
@@ -61,16 +67,18 @@ session_start();
     @keyframes fallingLeavesLeft {
       0% {
         transform: translateY(-10vh) translateX(0) rotate(0deg);
-        opacity: 0; 
+        opacity: 0;
         /* Start with opacity 0 */
       }
+
       10% {
-        opacity: 0.7; 
+        opacity: 0.7;
         /* Gradually increase opacity within the first second */
       }
+
       100% {
         transform: translateY(110vh) translateX(-10vw) rotate(360deg);
-        opacity: 0.9; 
+        opacity: 0.9;
         /* Maintain opacity at 0.9 after the initial fade-in */
       }
     }
@@ -78,9 +86,9 @@ session_start();
     /* Style for the falling leaves */
     .falling-leaf {
       position: fixed;
-      pointer-events: none; 
+      pointer-events: none;
       /* Do not capture pointer events */
-      z-index: -1; 
+      z-index: -1;
       /* Set a lower z-index to place leaves behind other elements */
     }
 
@@ -89,14 +97,17 @@ session_start();
       animation: fallingLeavesRight linear infinite;
       animation-duration: 8s;
     }
+
     .leaf2 {
       animation: fallingLeavesRight linear infinite;
       animation-duration: 10s;
     }
+
     .leaf3 {
       animation: fallingLeavesRight linear infinite;
       animation-duration: 12s;
     }
+
     .leaf4 {
       animation: fallingLeavesRight linear infinite;
       animation-duration: 9s;
@@ -107,14 +118,17 @@ session_start();
       animation: fallingLeavesLeft linear infinite;
       animation-duration: 8s;
     }
+
     .leaf6 {
       animation: fallingLeavesLeft linear infinite;
       animation-duration: 10s;
     }
+
     .leaf7 {
       animation: fallingLeavesLeft linear infinite;
       animation-duration: 12s;
     }
+
     .leaf8 {
       animation: fallingLeavesLeft linear infinite;
       animation-duration: 9s;
@@ -123,12 +137,12 @@ session_start();
 </head>
 
 <body class="bg-gray-100 font-sans">
-<div class="fixed top-0 w-full text-center p-4 text-white text-2xl font-header" style="background-image: url('../images/Header.jpg'); box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);">
-  <h1 style="font-size: 40px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); letter-spacing: 2px; text-transform: uppercase;"> PDF & TXT CONVERTER</h1>
-</div>
+  <div class="fixed top-0 w-full text-center p-4 text-white text-2xl font-header" style="background-image: url('../images/Header.jpg'); box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);">
+    <h1 style="font-size: 40px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); letter-spacing: 2px; text-transform: uppercase;"> PDF & TXT CONVERTER</h1>
+  </div>
 
   <div class="container mx-auto p-8">
-    
+
     <div class="bg-white p-8 rounded shadow-lg">
       <div class="text-3xl font-bold mb-4 arial-black-font">PDF and TXT Converter</div>
       <div class="text-gray-700">Easily convert PDF to TXT and TXT to PDF without installing any software.</div>
@@ -171,11 +185,6 @@ session_start();
           </div>
         </div>
       </form>
-
-      <!-- Button to download CSV file -->
-      <a href="../csv/sample.csv" download class="download-btn mt-8 inline-flex items-center bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
-        Download Sample CSV
-      </a>
     </div>
   </div>
 
