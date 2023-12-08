@@ -1,3 +1,99 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.times-font {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.1em;
+}
+
+/* Keyframe animation for falling leaves with fade-in and rotation (right-hand side leaves) */
+@keyframes fallingLeavesRight {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+    /* Start with opacity 0 */
+  }
+
+  20% {
+    opacity: 0.7;
+    /* Gradually increase opacity within the first second */
+  }
+
+  100% {
+    transform: translateY(110vh) translateX(10vw) rotate(360deg);
+    opacity: 0.9;
+    /* Maintain opacity at 0.9 after the initial fade-in */
+  }
+}
+
+/* Keyframe animation for falling leaves with fade-in and rotation (left-hand side leaves) */
+@keyframes fallingLeavesLeft {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+    /* Start with opacity 0 */
+  }
+
+  10% {
+    opacity: 0.7;
+    /* Gradually increase opacity within the first second */
+  }
+
+  100% {
+    transform: translateY(110vh) translateX(-10vw) rotate(360deg);
+    opacity: 0.9;
+    /* Maintain opacity at 0.9 after the initial fade-in */
+  }
+}
+
+/* Style for the falling leaves */
+.falling-leaf {
+  position: fixed;
+  pointer-events: none;
+  /* Do not capture pointer events */
+  z-index: -1;
+  /* Set a lower z-index to place leaves behind other elements */
+}
+
+/* Apply different styles to each leaf */
+.leaf1 {
+  animation: fallingLeavesRight linear infinite;
+  animation-duration: 8s;
+}
+
+.leaf2 {
+  animation: fallingLeavesRight linear infinite;
+  animation-duration: 10s;
+}
+
+.leaf3 {
+  animation: fallingLeavesRight linear infinite;
+  animation-duration: 12s;
+}
+
+.leaf4 {
+  animation: fallingLeavesRight linear infinite;
+  animation-duration: 9s;
+}
+
+/* Apply different styles to each bottom leaf */
+.leaf5 {
+  animation: fallingLeavesLeft linear infinite;
+  animation-duration: 8s;
+}
+
+.leaf6 {
+  animation: fallingLeavesLeft linear infinite;
+  animation-duration: 10s;
+}
+
+.leaf7 {
+  animation: fallingLeavesLeft linear infinite;
+  animation-duration: 12s;
+}
+
+.leaf8 {
+  animation: fallingLeavesLeft linear infinite;
+  animation-duration: 9s;
+}

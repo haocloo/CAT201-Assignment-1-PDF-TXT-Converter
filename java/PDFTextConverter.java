@@ -12,21 +12,21 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 public class PDFTextConverter {
     public static void main(String[] args) {
         try {
-            // The filename is passed as a command-line argument
-            String filename = args[0];
+            // Loop over each command-line argument
+            for (String filename : args) {
+                // Determine the file extension
+                String extension = "";
+                int i = filename.lastIndexOf('.');
+                if (i > 0) {
+                    extension = filename.substring(i + 1);
+                }
 
-            // Determine the file extension
-            String extension = "";
-            int i = filename.lastIndexOf('.');
-            if (i > 0) {
-                extension = filename.substring(i + 1);
-            }
-
-            // Call the appropriate method based on the file extension
-            if (extension.equalsIgnoreCase("pdf")) {
-                generateTxtFromPDF(filename);
-            } else if (extension.equalsIgnoreCase("txt")) {
-                generatePDFFromTxt(filename);
+                // Call the appropriate method based on the file extension
+                if (extension.equalsIgnoreCase("pdf")) {
+                    generateTxtFromPDF(filename);
+                } else if (extension.equalsIgnoreCase("txt")) {
+                    generatePDFFromTxt(filename);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
