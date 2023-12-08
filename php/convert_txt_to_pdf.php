@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-$_SESSION['message'] = 'Files are uploading...';
-
 if (isset($_FILES['user-file'])) {
     //Array to display different errors
     $phpFileUploadErrors = array(

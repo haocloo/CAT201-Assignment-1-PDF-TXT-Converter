@@ -2,21 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-image: url("../images/Fall Tree.jpg");
-  background-size: cover;
-  /* or 'contain' depending on your preference */
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /* Fixed background */
-  margin: 0;
-  /* Remove default margin */
-  margin-top: 50px;
-  /* Adjust the value based on the height of your fixed header */
-  padding: 0;
-  /* Remove default padding */
-}
-
 .font-header {
   font-family: "Cambria", sans-serif;
   font-style: italic;

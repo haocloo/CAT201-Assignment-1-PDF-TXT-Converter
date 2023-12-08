@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-$_SESSION['message'] = 'Files are uploading...';
-
 if (isset($_FILES['user-file'])) {
     //Array to display different errors
     $phpFileUploadErrors = array(
@@ -46,7 +44,7 @@ if (isset($_FILES['user-file'])) {
 
             // Set success message with a link to download the converted text file
             $filenameWithoutExtension = pathinfo($_FILES['user-file']['name'][$i], PATHINFO_FILENAME);
-            $_SESSION['txt-message'] .= '
+            $_SESSION['txt-message'] = '
             <button class="bg-green-500 hover:bg-green-700 text-white font-bold h-10 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
               <a href="/output/' . $filenameWithoutExtension . '.txt" download>Download ' . $filenameWithoutExtension . '.txt</a>
             </button>';

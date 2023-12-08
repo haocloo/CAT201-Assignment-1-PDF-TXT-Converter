@@ -7,10 +7,10 @@ RUN apt-get update && apt-get install -y \
     php
 
 # Copy your Java code and the library into the Docker image
-COPY java/ /java/
+# COPY java/ /java/
 
 # Compile the Java file
-RUN javac -cp /java/lib/pdfbox-app-2.0.24.jar /java/PDFTextConverter.java
+# RUN javac -cp /java/lib/pdfbox-app-2.0.24.jar /java/PDFTextConverter.java
 
 # Make port 80 available to the world outside this container
 EXPOSE 80
