@@ -32,7 +32,7 @@ session_start();
           <h2 class="text-xl font-bold">Select PDF File to Convert to TXT File</h2>
           <!-- Upload button -->
           <div class="w-full py-2 mt-2 flex flex-row gap-3">
-            <input type="file" name="user-file[]" id="pdf-file" accept=".pdf" class="hidden" multiple required onchange="displayPDFFileNames(this.files)">
+            <input type="file" name="user-file[]" id="pdf-file" accept=".pdf" class="hidden" multiple required onchange="displayFileNames(this.files)">
             <label for="pdf-file" class="cursor-pointer bg-blue-500 text-white font-bold py-2 px-4 rounded inline-block hover:bg-blue-700">Upload PDF files</label>
             <div id="pdf-file-names" class="mt-2 text-lg font-semibold text-blue-600"></div>
           </div>
@@ -61,7 +61,7 @@ session_start();
           <h2 class="text-xl font-bold">Select TXT File to Convert to PDF File</h2>
           <!-- Upload button -->
           <div class="w-full py-2 mt-2 flex flex-row gap-3">
-            <input type="file" name="user-file[]" id="txt-file" accept=".txt" class="hidden" multiple required onchange="displayTXTFileNames(this.files)">
+            <input type="file" name="user-file[]" id="txt-file" accept=".txt" class="hidden" multiple required onchange="displayFileNames(this.files)">
             <label for="txt-file" class="cursor-pointer bg-blue-500 text-white font-bold py-2 px-4 rounded inline-block hover:bg-blue-700">Upload .TXT files</label>
             <div id="txt-file-names" class="mt-2 text-lg font-semibold text-blue-600"></div>
           </div>
@@ -148,34 +148,39 @@ session_start();
 
 <script>
   // Upload button
-  function displayPDFFileNames(files) {
-    var fileNames = Array.from(files).map(file => file.name);
-    document.getElementById('pdf-file-names').textContent = 'Selected ' + fileNames.join(', ');
-  }
-
-  function displayTXTFileNames(files) {
-    var fileNames = Array.from(files).map(file => file.name);
-    document.getElementById('txt-file-names').textContent = 'Selected ' + fileNames.join(', ');
+  function displayFileNames(inputElementId, outputElementId) {
+    var fileInput = document.getElementById(inputElementId);
+    fileInput.addEventListener('change', function() {
+      var files = fileInput.files;
+      var fileNames = Array.from(files).map(file => file.name);
+      if (fileNames.length > 0) {
+        document.getElementById(outputElementId).textContent = 'Selected ' + fileNames.join(', ');
+      } else {
+        document.getElementById(outputElementId).textContent = '';
+      }
+    });
   }
 
   // Submit & Loading button
-  var pdfForm = document.getElementById('pdf-form');
-  var pdfSubmitButton = document.getElementById('pdf-submit-btn');
-  var pdfSubmitText = document.getElementById('pdf-submit-text');
-  var pdfSubmitLoading = document.getElementById('pdf-submit-loading');
+  function handleFormSubmit(formId, submitButtonId, submitLoadingId) {
+    var form = document.getElementById(formId);
+    var submitButton = document.getElementById(submitButtonId);
+    var submitLoading = document.getElementById(submitLoadingId);
 
-  pdfForm.addEventListener('submit', function(event) {
-    pdfSubmitLoading.style.display = 'inline-block';
-    pdfSubmitButton.disabled = true;
-  });
+    form.addEventListener('submit', function(event) {
+      if (form.checkValidity()) {
+        submitLoading.style.display = 'inline-block';
+        submitButton.disabled = true;
+      } else {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+  }
 
-  var txtForm = document.getElementById('txt-form');
-  var txtSubmitButton = document.getElementById('txt-submit-btn');
-  var txtSubmitText = document.getElementById('txt-submit-text');
-  var txtSubmitLoading = document.getElementById('txt-submit-loading');
+  displayFileNames('pdf-file', 'pdf-file-names');
+  handleFormSubmit('pdf-form', 'pdf-submit-button', 'pdf-submit-loading');
 
-  txtForm.addEventListener('submit', function(event) {
-    txtSubmitLoading.style.display = 'inline-block';
-    txtSubmitButton.disabled = true;
-  });
+  displayFileNames('txt-file', 'txt-file-names');
+  handleFormSubmit('txt-form', 'txt-submit-button', 'txt-submit-loading');
 </script>
