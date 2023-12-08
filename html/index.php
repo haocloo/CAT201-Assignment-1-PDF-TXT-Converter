@@ -10,55 +10,78 @@ session_start();
   <meta name="description" content="Convert PDF to TXT and TXT to PDF easily without installing any software.">
   <title>PDF and TXT Converter</title>
   <link rel="stylesheet" type="text/css" href="../css/output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body class="bg-gray-100 font-sans pt-2 bg-no-repeat bg-fixed bg-cover mt-12" style="background-image: url('../images/Fall Tree.jpg');">
-  <header class="fixed top-0 w-full text-center p-4 text-white text-2xl font-header shadow-md" style="background-image: url('../images/Header.jpg');">
-    <h1 class="text-4xl md:text-5xl lg:text-6xl text-shadow-md uppercase tracking-wider">PDF & TXT CONVERTER</h1>
+<body class="bg-gray-100 font-sans pt-2 flex flex-col min-h-screen bg-no-repeat bg-fixed bg-cover mt-12" style="background-image: url('../images/Fall Tree.jpg');">
+  <header class="z-10 fixed top-0 w-full text-center p-4 text-white text-2xl shadow-md" style="background-image: url('../images/Header.jpg');">
+    <h2 class="text-3xl md:text-4xl lg:text-5xl text-shadow-md italic font-bold uppercase tracking-wider">PDF & TXT CONVERTER</h2>
   </header>
 
-  <main class="container mx-auto flex flex-col gap-5 p-8 mt-5">
+  <main class="flex-grow container mx-auto flex flex-col gap-5 p-8 mt-5">
 
-    <section class="bg-white p-8 rounded-lg shadow-lg">
-      <h2 class="text-3xl sm:text-3xl font-bold mb-4 arial-black-font">PDF and TXT Converter</h2>
-      <p class="text-gray-700">Easily convert PDF to TXT and TXT to PDF without installing any software.</p>
+    <section class="bg-white p-8 mt-8 rounded-lg shadow-lg">
+      <h2 class="text-3xl sm:text-3xl font-bold mb-4 ">PDF and TXT Converter</h2>
+      <p class="text-gray-700">Easily convert multiple PDF to TXT and TXT to PDF without installing any software.</p>
     </section>
 
-    <section class="container mx-auto p-8 bg-yellow-100 bg-opacity-80 border shadow-lg rounded-lg">
-
+    <section class="z-0 container mx-auto p-8 bg-yellow-100 bg-opacity-80 border shadow-lg rounded-lg ">
       <!-- Form for PDF file upload -->
-      <form id="pdf-form" action="../php/convert_pdf_to_txt.php" method="POST" enctype="multipart/form-data" class="mt-4">
-        <label for="pdf-file" class="text-lg font-semibold verdana-font">Select PDF File to Convert to TXT File</label>
-        <input type="file" name="user-file[]" id="pdf-file" accept=".pdf" class="mt-2 w-full rounded-lg" multiple required>
-        <div class="flex flex-row gap-5 mt-4">
-          <input type="submit" value="Submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded-lg transition-width duration-500 delay-200 hover:scale-110">
-          <div id="txt-message" class="my-auto">
-            <?php
-            if (isset($_SESSION['txt-message'])) {
-              echo $_SESSION['txt-message'];
-              unset($_SESSION['txt-message']);
-            }
-            ?>
+      <div class="relative">
+        <form id="pdf-form" action="../php/convert_pdf_to_txt.php" method="POST" enctype="multipart/form-data" class="mt-4">
+          <h2 class="text-xl font-bold">Select PDF File to Convert to TXT File</h2>
+          <!-- Upload button -->
+          <div class="w-full py-2 mt-2 flex flex-row gap-3">
+            <input type="file" name="user-file[]" id="pdf-file" accept=".pdf" class="hidden" multiple required onchange="displayPDFFileNames(this.files)">
+            <label for="pdf-file" class="cursor-pointer bg-blue-500 text-white font-bold py-2 px-4 rounded inline-block hover:bg-blue-700">Upload PDF files</label>
+            <div id="pdf-file-names" class="mt-2 text-lg font-semibold text-blue-600"></div>
           </div>
+          <!-- Submit button -->
+          <div class="flex flex-row gap-5 mt-4">
+            <button id="pdf-submit-button" type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
+              <span id="pdf-submit-text">Submit</span>
+              <i id="pdf-submit-loading" class="ml-2 fa-solid fa-circle-notch animate-spin origin-center" style="display:none;"></i>
+            </button>
+          </div>
+        </form>
+        <!-- Download button -->
+        <div id="pdf-message" class="absolute bottom-0 left-36 flex flex-row gap-3">
+          <?php
+          if (isset($_SESSION['pdf-message'])) {
+            echo $_SESSION['pdf-message'];
+            unset($_SESSION['pdf-message']);
+          }
+          ?>
         </div>
-      </form>
+      </div>
 
       <!-- Form for TXT file upload -->
-      <form action="../php/convert_txt_to_pdf.php" method="POST" enctype="multipart/form-data" class="mt-8">
-        <label for="txt-file" class="text-lg font-semibold verdana-font">Select TXT File to Convert to PDF File</label>
-        <input type="file" name="user-file[]" id="txt-file" accept=".txt" class="mt-2 w-full rounded-lg" multiple required>
-        <div class="flex flex-row gap-5 mt-4">
-          <input type="submit" value="Submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded-lg transition-width duration-500 delay-200 hover:scale-110">
-          <div id="pdf-message" class="my-auto">
-            <?php
-            if (isset($_SESSION['pdf-message'])) {
-              echo $_SESSION['pdf-message'];
-              unset($_SESSION['pdf-message']);
-            }
-            ?>
+      <div class="relative">
+        <form action="../php/convert_txt_to_pdf.php" method="POST" enctype="multipart/form-data" class="mt-8">
+          <h2 class="text-xl font-bold">Select TXT File to Convert to PDF File</h2>
+          <!-- Upload button -->
+          <div class="w-full py-2 mt-2 flex flex-row gap-3">
+            <input type="file" name="user-file[]" id="txt-file" accept=".txt" class="hidden" multiple required onchange="displayTXTFileNames(this.files)">
+            <label for="txt-file" class="cursor-pointer bg-blue-500 text-white font-bold py-2 px-4 rounded inline-block hover:bg-blue-700">Upload .TXT files</label>
+            <div id="txt-file-names" class="mt-2 text-lg font-semibold text-blue-600"></div>
           </div>
+
+          <div class="flex flex-row gap-5 mt-4">
+            <button id="txt-submit-button" type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
+              <span id="txt-submit-text">Submit</span>
+            </button>
+          </div>
+        </form>
+        <!-- Download Button -->
+        <div id="txt-message" class="absolute bottom-0 left-36 flex flex-row gap-3">
+          <?php
+          if (isset($_SESSION['txt-message'])) {
+            echo $_SESSION['txt-message'];
+            unset($_SESSION['txt-message']);
+          }
+          ?>
         </div>
-      </form>
+      </div>
     </section>
 
     <div class=" flex flex-col md:flex-row justify-center">
@@ -66,10 +89,10 @@ session_start();
       <div class="float-left flex-1 border rounded-tl-lg rounded-tr-lg md:rounded-tr-none md:rounded-tl-lg md:rounded-bl-lg p-4 bg-gray-100">
         <div class="text-2xl font-bold mb-2 text-blue-500">How to Convert PDF to TXT:</div>
         <ol class="list-decimal pl-6 times-font">
-          <li>Choose the PDF file from your laptop.</li>
-          <li>Click the <span class="font-semibold text-blue-700 !important">Submit</span> button.</li>
+          <li>Choose the PDF file(s) from your laptop.</li>
+          <li>Click the <span class="font-semibold text-blue-700">Submit</span> button.</li>
           <li>Wait patiently while the system converts the file to TXT.</li>
-          <li>Once the conversion is complete, press the <span class="font-semibold text-blue-700 !important">Download</span> button to get the TXT file.</li>
+          <li>Once the conversion is complete, press the <span class="font-semibold text-blue-700">Download</span> button to get the TXT file.</li>
         </ol>
       </div>
 
@@ -77,21 +100,21 @@ session_start();
       <div class="float-right flex-1 border rounded-bl-lg rounded-br-lg md:rounded-bl-none md:rounded-tr-lg md:rounded-br-lg p-4 bg-gray-100">
         <div class="text-2xl font-bold mb-2 text-blue-500">How to Convert TXT to PDF:</div>
         <ol class="list-decimal pl-6 times-font">
-          <li>Choose the TXT file from your laptop.</li>
-          <li>Click the <span class="font-semibold text-blue-700 !important">Submit</span> button.</li>
+          <li>Choose the TXT file(s) from your laptop.</li>
+          <li>Click the <span class="font-semibold text-blue-700">Submit</span> button.</li>
           <li>Wait patiently while the system converts the file to PDF.</li>
-          <li>Once the conversion is complete, press the <span class="font-semibold text-blue-700 !important">Download</span> button to get the PDF file.</li>
+          <li>Once the conversion is complete, press the <span class="font-semibold text-blue-700">Download</span> button to get the PDF file.</li>
         </ol>
       </div>
     </div>
 
 
   </main>
-
-  <footer class="text-center w-full h-auto pt-2 mt-8 rounded-lg" style="background: linear-gradient(to bottom, rgba(255, 255, 204, 0.15) 0%, rgba(255, 255, 204, 0.5) 50%, rgba(255, 255, 204, 0.8) 100%);">
+  <footer class="text-center w-full h-auto pt-2 mt-4 rounded-lg" style="background: linear-gradient(to bottom, rgba(255, 255, 204, 0.15) 0%, rgba(255, 255, 204, 0.5) 50%, rgba(255, 255, 204, 0.8) 100%);">
     <div class="text-black font-semibold">Prepared by: Yeo Din Song, Loo Chi Hao, Lim Yong Jun, Lim Jia Liang</div>
     <div class="text-black font-semibold">© 2023 PDF and TXT Converter. All rights reserved.</div>
   </footer>
+
 
   <!-- Falling leaves animation -->
   <div class="falling-leaf leaf1" style="left: 92.5%; top: 5%;">
@@ -124,13 +147,35 @@ session_start();
 </html>
 
 <script>
-  // Select the form and message div
-  const pdfForm = document.querySelector('#pdf-form');
-  const messageDiv = document.querySelector('#txt-message');
+  // Upload button
+  function displayPDFFileNames(files) {
+    var fileNames = Array.from(files).map(file => file.name);
+    document.getElementById('pdf-file-names').textContent = 'Selected ' + fileNames.join(', ');
+  }
 
-  // Function to handle form submission
+  function displayTXTFileNames(files) {
+    var fileNames = Array.from(files).map(file => file.name);
+    document.getElementById('txt-file-names').textContent = 'Selected ' + fileNames.join(', ');
+  }
+
+  // Submit & Loading button
+  var pdfForm = document.getElementById('pdf-form');
+  var pdfSubmitButton = document.getElementById('pdf-submit-btn');
+  var pdfSubmitText = document.getElementById('pdf-submit-text');
+  var pdfSubmitLoading = document.getElementById('pdf-submit-loading');
+
   pdfForm.addEventListener('submit', function(event) {
-    // Show the loading message
-    messageDiv.textContent = 'Files are uploading...';
+    pdfSubmitLoading.style.display = 'inline-block';
+    pdfSubmitButton.disabled = true;
+  });
+
+  var txtForm = document.getElementById('txt-form');
+  var txtSubmitButton = document.getElementById('txt-submit-btn');
+  var txtSubmitText = document.getElementById('txt-submit-text');
+  var txtSubmitLoading = document.getElementById('txt-submit-loading');
+
+  txtForm.addEventListener('submit', function(event) {
+    txtSubmitLoading.style.display = 'inline-block';
+    txtSubmitButton.disabled = true;
   });
 </script>

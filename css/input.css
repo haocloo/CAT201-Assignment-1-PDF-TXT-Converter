@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.font-header {
-  font-family: "Cambria", sans-serif;
-  font-style: italic;
-}
-
-.arial-black-font {
-  font-family: Arial Black, sans-serif;
-}
-
-.verdana-font {
-  font-family: Verdana, sans-serif;
-}
-
 .times-font {
   font-family: "Times New Roman", Times, serif;
   font-size: 1.1em;
