@@ -52,5 +52,5 @@ if (isset($_FILES['user-file'])) {
 }
 
 // Redirect back to index.php
-header('Location: ../html/index.php');
+header('Location: ./index.php');
 exit;

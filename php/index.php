@@ -15,10 +15,10 @@ session_start();
 
 <body class="bg-gray-100 font-sans pt-2 flex flex-col min-h-screen bg-no-repeat bg-fixed bg-cover mt-12" style="background-image: url('../images/Fall Tree.jpg');">
   <header class="z-10 fixed top-0 w-full text-center p-4 text-white text-2xl shadow-md" style="background-image: url('../images/Header.jpg');">
-    <h2 class="text-3xl md:text-4xl lg:text-5xl text-shadow-md italic font-bold uppercase tracking-wider">PDF & TXT CONVERTER</h2>
+    <h2 class="text-3xl md:text-4xl lg:text-5xl text-shadow-md italic font-bold uppercase tracking-wider" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">PDF & TXT CONVERTER</h2>
   </header>
 
-  <main class="flex-grow container mx-auto flex flex-col gap-5 p-8 mt-5">
+  <main class=" flex-grow container mx-auto flex flex-col gap-5 p-8 mt-5">
 
     <section class="bg-white p-8 mt-8 rounded-lg shadow-lg">
       <h2 class="text-3xl sm:text-3xl font-bold mb-4 ">PDF and TXT Converter</h2>
@@ -32,15 +32,15 @@ session_start();
           <h2 class="text-xl font-bold">Select PDF File to Convert to TXT File</h2>
           <!-- Upload button -->
           <div class="w-full py-2 mt-2 flex flex-row gap-3">
-            <input type="file" name="user-file[]" id="pdf-file" accept=".pdf" class="hidden" multiple required onchange="displayFileNames(this.files)">
+            <input type="file" name="user-file[]" id="pdf-file" accept=".pdf" class="hidden" multiple required onchange="displayPDFFileNames(this.files)">
             <label for="pdf-file" class="cursor-pointer bg-blue-500 text-white font-bold py-2 px-4 rounded inline-block hover:bg-blue-700">Upload PDF files</label>
             <div id="pdf-file-names" class="mt-2 text-lg font-semibold text-blue-600"></div>
           </div>
           <!-- Submit button -->
           <div class="flex flex-row gap-5 mt-4">
-            <button id="pdf-submit-button" type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
+            <button id="pdf-submit-btn" type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
               <span id="pdf-submit-text">Submit</span>
-              <i id="pdf-submit-loading" class="ml-2 fa-solid fa-circle-notch animate-spin origin-center" style="display:none;"></i>
+              <i id="pdf-submit-loading" class="fa-solid fa-circle-notch animate-spin origin-center" style="display:none;"></i>
             </button>
           </div>
         </form>
@@ -57,18 +57,19 @@ session_start();
 
       <!-- Form for TXT file upload -->
       <div class="relative">
-        <form action="../php/convert_txt_to_pdf.php" method="POST" enctype="multipart/form-data" class="mt-8">
+        <form action="../php/convert_txt_to_pdf.php" method="POST" enctype="multipart/form-data" class="mt-8" id="txt-form">
           <h2 class="text-xl font-bold">Select TXT File to Convert to PDF File</h2>
           <!-- Upload button -->
           <div class="w-full py-2 mt-2 flex flex-row gap-3">
-            <input type="file" name="user-file[]" id="txt-file" accept=".txt" class="hidden" multiple required onchange="displayFileNames(this.files)">
+            <input type="file" name="user-file[]" id="txt-file" accept=".txt" class="hidden" multiple required onchange="displayTXTFileNames(this.files)">
             <label for="txt-file" class="cursor-pointer bg-blue-500 text-white font-bold py-2 px-4 rounded inline-block hover:bg-blue-700">Upload .TXT files</label>
             <div id="txt-file-names" class="mt-2 text-lg font-semibold text-blue-600"></div>
           </div>
 
           <div class="flex flex-row gap-5 mt-4">
-            <button id="txt-submit-button" type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
+            <button id="txt-submit-btn" type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold h-10 px-4 rounded transition-width duration-500 delay-200 hover:scale-110">
               <span id="txt-submit-text">Submit</span>
+              <i id="txt-submit-loading" class="fa-solid fa-circle-notch animate-spin origin-center" style="display:none;"></i>
             </button>
           </div>
         </form>
@@ -148,39 +149,36 @@ session_start();
 
 <script>
   // Upload button
-  function displayFileNames(inputElementId, outputElementId) {
-    var fileInput = document.getElementById(inputElementId);
-    fileInput.addEventListener('change', function() {
-      var files = fileInput.files;
-      var fileNames = Array.from(files).map(file => file.name);
-      if (fileNames.length > 0) {
-        document.getElementById(outputElementId).textContent = 'Selected ' + fileNames.join(', ');
-      } else {
-        document.getElementById(outputElementId).textContent = '';
-      }
-    });
+  function displayPDFFileNames(files) {
+    var fileNames = Array.from(files).map(file => file.name);
+    document.getElementById('pdf-file-names').textContent = 'Selected ' + fileNames.join(', ');
+  }
+
+  function displayTXTFileNames(files) {
+    var fileNames = Array.from(files).map(file => file.name);
+    document.getElementById('txt-file-names').textContent = 'Selected ' + fileNames.join(', ');
   }
 
   // Submit & Loading button
-  function handleFormSubmit(formId, submitButtonId, submitLoadingId) {
-    var form = document.getElementById(formId);
-    var submitButton = document.getElementById(submitButtonId);
-    var submitLoading = document.getElementById(submitLoadingId);
+  var pdfForm = document.getElementById('pdf-form');
+  var pdfSubmitButton = document.getElementById('pdf-submit-btn');
+  var pdfSubmitText = document.getElementById('pdf-submit-text');
+  var pdfSubmitLoading = document.getElementById('pdf-submit-loading');
 
-    form.addEventListener('submit', function(event) {
-      if (form.checkValidity()) {
-        submitLoading.style.display = 'inline-block';
-        submitButton.disabled = true;
-      } else {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    });
-  }
+  pdfForm.addEventListener('submit', function(event) {
+    pdfSubmitText.textContent = 'Converting';
+    pdfSubmitLoading.style.display = 'inline-block';
+    pdfSubmitButton.disabled = true;
+  });
 
-  displayFileNames('pdf-file', 'pdf-file-names');
-  handleFormSubmit('pdf-form', 'pdf-submit-button', 'pdf-submit-loading');
+  var txtForm = document.getElementById('txt-form');
+  var txtSubmitButton = document.getElementById('txt-submit-btn');
+  var txtSubmitText = document.getElementById('txt-submit-text');
+  var txtSubmitLoading = document.getElementById('txt-submit-loading');
 
-  displayFileNames('txt-file', 'txt-file-names');
-  handleFormSubmit('txt-form', 'txt-submit-button', 'txt-submit-loading');
+  txtForm.addEventListener('submit', function(event) {
+    txtSubmitText.textContent = 'Converting';
+    txtSubmitLoading.style.display = 'inline-block';
+    txtSubmitButton.disabled = true;
+  });
 </script>

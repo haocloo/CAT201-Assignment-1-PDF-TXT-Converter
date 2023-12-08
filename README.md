@@ -18,18 +18,13 @@ git clone https://github.com/haocloo/CAT201-Assignment-1.git
 cd CAT201-Assignment-1
 ```
 
-### Run tailwindcss (In Terminal 1)
-```bash
-npx tailwindcss -i ./css/input.css -o ./css/output.css --watch
-```
-
 ### Start docker container
 (Make sure you are at the root directory)
 ```bash
 docker-compose build
 docker-compose up -d
 ```
-View website at http://localhost:8082/html/index.php
+View website at http://localhost:8082/php/index.php
 
 ### Restart docker container
 (Make sure you are at the root directory)
@@ -37,46 +32,4 @@ View website at http://localhost:8082/html/index.php
 docker-compose down
 docker-compose build
 docker-compose up -d
-```
-
-### Testing your java file locally (Run this command in vscode terminal)
-```bash
-javac -cp ".;java/lib/*" java/*.java
-```
-
-## Git commands
-
-### Create your branch (naming example : lch)
-```bash
-git switch dev
-git switch -c your-branch-name
-(eg : git switch -c lch)
-```
-
-### Commit your changes
-```bash
-git add .
-git commit -m "your commit message"
-```
-
-### Merge dev branch to your branch and update your branch
-```bash
-git pull origin dev
-git push origin your-branch-name
-```
-
-### Merge any merge conflicts (if any)
-```bash
-git commit -m "Resolve merge conflict"
-```
-
-### Merge your branch to dev branch and update dev branch
-```bash
-git switch dev
-git merge your-branch-name
-git push origin dev
-```
-### View Github.com (Only for CAT201-Assignment-1)
-```bash
-git remote -v
 ```
